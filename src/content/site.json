@@ -4,7 +4,7 @@
     "label": "Get Started",
     "url": "/get-started"
   },
-  "footer_text": "© 2025 Spice Labs. All rights reserved.",
+  "footer_text": "© 2025-2026 Spice Labs. All rights reserved.",
   "careers_cta": {
     "label": "See Open Positions",
     "url": "https://www.linkedin.com/company/spice-labs-inc/jobs/"
@@ -13,7 +13,7 @@
   "site_url": "https://www.spicelabs.io",
   "site_domain": "spicelabs.io",
   "contact_us_cta": {
-    "url": "mailto:sales@spicelabs.io",
-    "label": "Email sales@spicelabs.io"
+    "label": "Email sales@spicelabs.io",
+    "url": "mailto:sales@spicelabs.io"
   }
 }
