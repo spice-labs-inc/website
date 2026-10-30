@@ -1,0 +1,128 @@
+---
+import Step01Header from "../content/Step01Header.mdx";
+import Step01Text from "../content/Step01Text.mdx";
+import Step02Header from "../content/Step02Header.mdx";
+import Step02Text from "../content/Step02Text.mdx";
+import Step03Header from "../content/Step03Header.mdx";
+import Step03Text from "../content/Step03Text.mdx";
+---
+
+<section id="steps">
+  <div class="inner">
+    <div class="step">
+      <div class="media">
+        <img src="/images/Step01Image.svg" alt="A heap of labels and packages and CVEs" />
+      </div>
+      <div class="content">
+        <h3>
+          <small>Step 01</small>
+          <Step01Header />
+        </h3>
+        <Step01Text />
+      </div>
+    </div>
+
+    <div class="step flip">
+      <div class="media">
+        <img src="/images/Step02Image.svg" alt="Untangled web" />
+      </div>
+      <div class="content">
+        <h3>
+          <small>Step 02</small>
+          <Step02Header />
+        </h3>
+        <Step02Text />
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="media">
+        <img src="/images/Step03Image.svg" alt="Graphs with connectins and underlying context" />
+      </div>
+      <div class="content">
+        <h3>
+          <small>Step 03</small>
+          <Step03Header />
+        </h3>
+        <Step03Text />
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #steps {
+      color: var(--color-dark);
+      background-color: var(--color-light);
+      padding: 0;
+    }
+
+    .inner {
+      container-type: inline-size;
+
+      padding: 0 3rlh 3rlh 3rlh;
+      @media (width < 24rlh) {
+        padding: 1rlh;
+      }
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 0 auto 0.5rem;
+    }
+
+    .step {
+      margin-block: 3rlh;
+      display: grid;
+      grid-template: "media content" auto / 1.1fr 0.9fr;
+      gap: 3rlh;
+      align-items: center;
+      width: 100%;
+
+      @container (width < 35rlh) {
+        grid-template: "media" auto "content" auto / 1fr;
+        gap: 1rlh;
+      }
+
+      &.flip {
+        grid-template: "content media" auto / 0.9fr 1.1fr;
+        /* Repeat ourselves because Astro's selector to make classes 
+         local names is not specificity neutral */
+        @container (width < 35rlh) {
+          grid-template: "media" auto "content" auto / 1fr;
+          gap: 1rlh;
+        }
+      }
+
+      .media {
+        grid-area: media;
+        /* Ugly hack to keep baseline rhythm - we round the size of images down 
+       * slightly to make them fit the baseline */
+        padding-bottom: round(down, 75%, 1rlh);
+        position: relative;
+        img {
+          object-fit: cover;
+          position: absolute;
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .content {
+        grid-area: content;
+
+        h3 {
+          small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.48);
+            display: block;
+            margin-block-end: 2rlh;
+          }
+          font-weight: 600;
+          margin-block-end: 1rlh;
+        }
+      }
+    }
+  </style>
+</section>

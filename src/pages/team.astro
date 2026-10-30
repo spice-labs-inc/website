@@ -1,0 +1,175 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import LinkIcon from "@/assets/link.svg";
+
+const team = await getCollection("team");
+const advisors = await getCollection("advisors");
+
+function shuffle<T>(arr: Array<T>): Array<T> {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function shuffleWithExceptions<T>(arr: Array<T>): Array<T> {
+  const copy = arr.slice();
+  const idx = copy.findIndex((item: any) => {
+    const name = item?.data?.name;
+    return typeof name === "string" && name.includes("Pollak");
+  });
+  if (idx === -1) return shuffle(copy);
+  const [pollak] = copy.splice(idx, 1);
+  return [pollak, ...shuffle(copy)];
+}
+
+const shuffledTeam = shuffleWithExceptions(team);
+const shuffledAdvisors = shuffle(advisors);
+---
+
+<Layout>
+  <section id="team-page">
+    <div class="bg-diamonds"></div>
+
+    <h1>
+      Team & <strong>Advisors</strong>
+    </h1>
+
+    <div class="grid">
+      {shuffledTeam.map((p) => (
+        <article class="card">
+          <img src={p.data.image} alt={p.data.name} loading="lazy" />
+          <div>
+            <h3>
+              {p.data.link ? (
+                <a href={p.data.link} target="_blank">
+                  {p.data.name} <LinkIcon />
+                </a>
+              ) : (
+                p.data.name
+              )}
+            </h3>
+            <p class="title">{p.data.title}</p>
+            {p.data.bio && <p class="bio">{p.data.bio}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h2 class="section-heading">Advisors</h2>
+    <div class="grid">
+      {shuffledAdvisors.map((p) => (
+        <article class="card">
+          <img src={p.data.image} alt={p.data.name} loading="lazy" />
+          <div>
+            <h3>
+              {p.data.link ? (
+                <a href={p.data.link} target="_blank">
+                  {p.data.name} <LinkIcon />
+                </a>
+              ) : (
+                p.data.name
+              )}
+            </h3>
+            {p.data.title && <p class="title">{p.data.title}</p>}
+            {p.data.bio && <p class="bio">{p.data.bio}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  #team-page {
+    color: var(--color-light);
+    background:
+      url("/images/HeroBackground.svg") no-repeat right bottom,
+      var(--color-black);
+    padding: 4rlh 4rlh;
+    container-type: inline-size;
+
+    @media (width <= 55rlh) {
+      padding: 2rlh 1rem;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 4.5rem;
+    line-height: 4rlh;
+    margin-block-end: 3rlh;
+    text-wrap: balance;
+
+    strong {
+      color: var(--color-primary);
+    }
+
+    @container (width < 24rlh) {
+      font-size: 3rem;
+      line-height: 3rlh;
+    }
+  }
+
+  .section-heading {
+    font-size: 2rem;
+    line-height: 2rlh;
+    margin-block: 2rlh 1.5rlh;
+    padding-block-end: 0.5rlh;
+    border-block-end: 1px solid rgba(from var(--color-light) r g b / 0.15);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 48rlh;
+    margin-inline: auto;
+    gap: 2rlh;
+  }
+
+  .card {
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1.3;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(1) sepia(20%) brightness(90%) hue-rotate(180deg);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      line-height: 1.5rlh;
+      margin-block: 0.5rlh 0;
+
+      a {
+        color: var(--color-light);
+        text-decoration: none;
+        &:hover {
+          color: var(--color-primary);
+        }
+
+        svg {
+          width: 0.8em;
+          height: 0.8em;
+          fill: currentColor;
+          vertical-align: baseline;
+        }
+      }
+    }
+
+    .title {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    .bio {
+      font-size: 0.85rem;
+      line-height: 1.25rlh;
+      opacity: 0.7;
+      margin-block-start: 0.5rlh;
+    }
+  }
+</style>

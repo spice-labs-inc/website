@@ -1,0 +1,157 @@
+---
+import { getCollection } from "astro:content";
+import CardFlow from "./CardFlow.astro";
+import { Image } from "astro:assets";
+import Resource1 from "@/assets/Resource1.png";
+import Resource2 from "@/assets/Resource2.png";
+import Resource3 from "@/assets/Resource3.png";
+
+const backgrounds = [Resource1, Resource2, Resource3];
+
+const resources = await getCollection("resources");
+const sortedResources = resources.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+---
+
+<section id="resources">
+  <div class="inner">
+    <div class="title">
+      <h2>Resources</h2>
+      <div class="scroll-buttons">
+        <button class="scroll-left" aria-label="Scroll left">
+          &#8249;
+        </button>
+        <button class="scroll-right" aria-label="Scroll right">
+          &#8250;
+        </button>
+      </div>
+    </div>
+    <div class="resources-carousel">
+      <CardFlow id="resources-grid">
+        {sortedResources.map((resource, i) => (
+          <article class="card contain" aria-label={resource.data?.title}>
+            {resource.data?.image && (
+              <img class="fill-container" src={resource.data?.image} loading="lazy" />
+            )}
+            {!resource.data?.image && (
+              <Image
+                src={backgrounds[i % backgrounds.length]}
+                alt={resource.data?.title}
+                width="300"
+                height="300"
+              />
+            )}
+            <a class="fill-container inner" target="_blank" href={resource.data.url}>
+              <h3>{resource.data?.type}</h3>
+              <p>{resource.data?.title}</p>
+            </a>
+          </article>
+        ))}
+      </CardFlow>
+    </div>
+  </div>
+
+  <script>
+    const section = document.getElementById("resources");
+    const scrollable = section?.querySelector(".card-flow-inner");
+    const leftBtn = section?.querySelector(".scroll-left");
+    const rightBtn = section?.querySelector(".scroll-right");
+    const amount = 300;
+
+    leftBtn?.addEventListener("click", () => {
+      scrollable?.scrollBy({ left: -amount, behavior: "smooth" });
+    });
+    rightBtn?.addEventListener("click", () => {
+      scrollable?.scrollBy({ left: amount, behavior: "smooth" });
+    });
+  </script>
+  <style>
+    #resources {
+      color: var(--color-light);
+      background: var(--color-black);
+      padding: 2rlh 3rlh;
+
+      @media screen and (width < 480px) {
+        padding: 2rlh 2rlh;
+      }
+
+      h2 {
+        font-size: 2rlh;
+        line-height: 3rlh;
+        font-weight: 400;
+      }
+
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .scroll-buttons {
+        display: flex;
+        gap: 0.5rlh;
+      }
+
+      .scroll-buttons button {
+        background: rgba(from var(--color-light) r g b / 0.1);
+        border: 1px solid rgba(from var(--color-light) r g b / 0.2);
+        color: var(--color-light);
+        font-size: 2rem;
+        line-height: 1;
+        width: 2.5rlh;
+        height: 2.5rlh;
+        padding-block-end: 0.3em;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: rgba(from var(--color-light) r g b / 0.2);
+        }
+      }
+    }
+
+    .resources-carousel {
+      .card {
+        aspect-ratio: 1/1;
+
+        &:hover {
+          transform: translateY(-4px);
+          transition: all 0.3s ease;
+        }
+
+        .inner {
+          padding: 1rlh;
+          text-decoration: none;
+        }
+
+        h3 {
+          font-size: 0.5rem;
+          line-height: 1rlh;
+          padding: 0 0.25rlh;
+          background-color: var(--color-white-20);
+          border-radius: 100vw;
+          width: fit-content;
+        }
+
+        p {
+          font-size: 1.25rem;
+          line-height: 1.5rlh;
+          font-weight: 400;
+          color: var(--color-white-90);
+          padding: 0.25rem;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+    }
+  </style>
+</section>

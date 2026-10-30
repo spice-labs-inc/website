@@ -1,0 +1,58 @@
+<svg width="656" height="489" viewBox="0 0 656 489" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_152_1012" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="656" height="489">
+<path d="M0 0.608521H656V488.609H0V0.608521Z" fill="#000015"/>
+</mask>
+<g mask="url(#mask0_152_1012)">
+<path opacity="0.02" d="M0 0.608521H656V488.609H0V0.608521Z" fill="#000015"/>
+<path d="M651 381.109L387 397.609L425 506.109" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M215 336.609L280 449.609V490.109" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M291.5 458.609L365 517.609" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M449 111.109L655.5 -89.3915L328 48.1085" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M449 113.609L329 47.1085M329 47.1085L245.5 161.609L188 -67.3915L329 47.1085Z" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M493.5 255.609L654.5 377.609L586 179.609L493.5 255.609Z" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M662 -66.3915L587.5 180.609L682 175.609" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<circle cx="653" cy="377.609" r="40" fill="#0029DD"/>
+<circle cx="653" cy="377.609" r="39.5" stroke="#000015" stroke-opacity="0.04"/>
+<path d="M245 162.609L142 88.1085L115 210.609L74.5 387.109L212 333.609L388.5 396.609L288.5 269.609L480.5 327.609L493.5 256.109L404 210.609L587 178.609L448.5 112.609L245 162.609Z" stroke="#000015" stroke-dasharray="4 4"/>
+<path d="M480.5 328.109V505.609" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M74 386.609L43.5 270.109L-51.5 340.609" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M42.5 270.609L115.5 209.109" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M108.5 206.609L-107 -11.3915L142.5 87.6085L122.5 -24.3915" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<path d="M116 210.609L243.5 163.109L289 267.609M289 267.609L404 210.609L448.5 112.609L289 267.609Z" stroke="#000015" stroke-dasharray="4 4"/>
+<path d="M115.5 212.109L213 333.109L245 161.109L404 208.609L390 396.609L115.5 212.109Z" stroke="#000015" stroke-dasharray="4 4"/>
+<path d="M245.5 161.609L76 385.109L-31.5 480.109L279.5 449.109" stroke="#000015" stroke-dasharray="4 4"/>
+<path d="M77.5 385.109L279 448.109" stroke="#000015" stroke-dasharray="4.03 4.03"/>
+<circle cx="448" cy="113.609" r="26" fill="#000015"/>
+<circle cx="448" cy="113.609" r="25.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="388" cy="396.609" r="26" fill="#1FDB7D"/>
+<circle cx="388" cy="396.609" r="25.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="116" cy="210.609" r="26" fill="#1FDB7D"/>
+<circle cx="116" cy="210.609" r="25.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="-8" cy="31.6085" r="26" fill="#1FDB7D"/>
+<circle cx="-8" cy="31.6085" r="25.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="245" cy="161.609" r="22" fill="#0029DD"/>
+<circle cx="245" cy="161.609" r="21.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="213" cy="332.609" r="22" fill="#0029DD"/>
+<circle cx="213" cy="332.609" r="21.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="404" cy="210.609" r="16" fill="#000015"/>
+<circle cx="404" cy="210.609" r="15.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="586" cy="177.609" r="16" fill="#0029DD"/>
+<circle cx="586" cy="177.609" r="15.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="479" cy="325.609" r="12" fill="#0029DD"/>
+<circle cx="479" cy="325.609" r="11.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="289" cy="268.609" r="14" fill="#1FDB7D"/>
+<circle cx="289" cy="268.609" r="13.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="493" cy="256.609" r="14" fill="#1FDB7D"/>
+<circle cx="493" cy="256.609" r="13.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="76" cy="384.609" r="14" fill="#1FDB7D"/>
+<circle cx="76" cy="384.609" r="13.5" stroke="#000015" stroke-opacity="0.08"/>
+<circle cx="279" cy="448.609" r="14" fill="#000015"/>
+<circle cx="279" cy="448.609" r="13.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="44" cy="269.609" r="14" fill="#000015"/>
+<circle cx="44" cy="269.609" r="13.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="142" cy="87.6085" r="14" fill="#0029DD"/>
+<circle cx="142" cy="87.6085" r="13.5" stroke="#000015" stroke-opacity="0.04"/>
+<circle cx="328" cy="49.6085" r="14" fill="#1FDB7D"/>
+<circle cx="328" cy="49.6085" r="13.5" stroke="#000015" stroke-opacity="0.08"/>
+</g>
+</svg>

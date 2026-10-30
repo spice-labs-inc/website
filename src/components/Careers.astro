@@ -1,0 +1,76 @@
+---
+import CareersHeader from "../content/CareersHeader.mdx";
+import CareersText from "../content/CareersText.mdx";
+import site from "../content/site.json";
+---
+
+<section id="careers">
+  <div class="careers-grid">
+    <div class="careers-header">
+      <CareersHeader />
+    </div>
+
+    <div class="right">
+      <CareersText />
+      <a class="button button-secondary" href={site.careers_cta.url}>
+        {site.careers_cta.label}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #careers {
+    color: var(--color-light);
+    background-color: var(--color-black);
+    padding-bottom: 3rlh;
+  }
+
+  .careers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rlh;
+    align-items: start;
+    padding: 2rlh 3rlh;
+    margin: 0 auto;
+  }
+
+  .right .button {
+    background: transparent;
+    outline: 2px solid var(--color-light);
+    color: var(--color-light);
+  }
+
+  .right .button:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    outline: 2px solid var(--color-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .careers-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rlh;
+      padding: 1.5rlh 1rlh;
+    }
+  }
+
+  .careers-header {
+    container-type: inline-size;
+    h2 {
+      letter-spacing: -0.02em;
+      font-size: 3rem;
+      line-height: 3rlh;
+      font-weight: 400;
+      margin-block: 1rlh;
+      strong {
+        font-weight: inherit;
+        color: var(--color-primary);
+      }
+      @container (width < 25rlh) {
+        font-size: 2rem;
+        line-height: 3rem;
+      }
+    }
+  }
+</style>

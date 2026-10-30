@@ -1,0 +1,41 @@
+---
+import Banner, { frontmatter } from "@/content/banner.mdx";
+
+const show = frontmatter.enabled;
+---
+
+{show && (
+  <div id="top-banner">
+    <div class="inner">
+      <Banner />
+    </div>
+  </div>
+)}
+
+<style>
+  #top-banner {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    border-bottom: 1px solid rgb(from var(--color-dark) r g b / 0.25);
+    font-size: 0.9rem;
+    text-align: center;
+    padding-inline: calc((100% - min(100%, var(--content-max))) / 2);
+  }
+
+  .inner {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-block: 0.5rlh;
+  }
+
+  .inner :global(p) {
+    margin: 0;
+    transform: none;
+  }
+
+  .inner :global(a) {
+    color: var(--color-dark);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

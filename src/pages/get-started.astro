@@ -1,0 +1,172 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import GetStartedHeader from "@/content/GetStartedHeader.mdx";
+import ContactTitle from "@/content/ContactTitle.mdx";
+import ContactText from "@/content/ContactText.mdx";
+import site from "@/content/site.json";
+---
+
+<Layout>
+  <section id="get-started">
+    <div class="bg-diamonds"></div>
+    <div class="get-started-header">
+      <GetStartedHeader />
+    </div>
+    <div class="get-started-content">
+      <div class="card">
+        <div class="cta-card">
+          <div class="cta-title">
+            <ContactTitle />
+          </div>
+          <div class="cta-text">
+            <ContactText />
+          </div>
+          <a class="button" href={site.contact_us_cta.url}>
+            {site.contact_us_cta.label}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    #get-started {
+      color: var(--color-light);
+      background:
+        url("/images/HeroBackground.svg") no-repeat right bottom,
+        var(--color-black);
+      gap: 1.5rlh;
+      padding: 2rlh 4rlh;
+
+      overflow: hidden;
+
+      container-type: inline-size;
+
+      @media (width <= 55rlh) {
+        padding-block: 2rlh;
+        padding-inline: 1rem;
+      }
+    }
+
+    .get-started-header {
+      font-size: 2.5rem;
+      line-height: 3rlh;
+      margin-bottom: 2rlh;
+
+      p {
+        max-width: 15em;
+        margin-inline: auto;
+      }
+
+      @container (width < 24rlh) {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        text-align: center;
+        margin-block: 1rlh;
+        font-size: 4.5rem;
+        line-height: 4rlh;
+        text-wrap: balance;
+        text-wrap: pretty;
+        @container (width < 24rlh) {
+          font-size: 3rem;
+          line-height: 3rlh;
+        }
+      }
+
+      h2 strong {
+        color: var(--color-primary);
+      }
+    }
+
+    .get-started-content {
+      display: grid;
+      gap: 2rlh;
+      grid-template-columns: 1fr;
+
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(from var(--color-light) r g b / 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(from var(--color-light) r g b / 0.1);
+      border-radius: 1rem;
+      padding: 3rlh 3rlh;
+      box-shadow: 0 8px 32px rgba(from var(--color-black) r g b / 0.3);
+      margin-inline: auto;
+
+      @container (width < 58rlh) {
+        gap: 1.5rem;
+        padding: 2rlh 2rlh;
+      }
+
+      @container (width < 49rlh) {
+        background: none;
+        border: none;
+      }
+
+      @container (width < 40rlh) {
+        padding-inline: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rlh;
+      }
+    }
+
+    .card {
+      container-type: inline-size;
+      display: flex;
+      flex-direction: column;
+      align-content: stretch;
+    }
+
+    .cta-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rlh;
+
+      transition: all 0.3s ease;
+
+      background: rgba(from var(--color-light) r g b / 0.05);
+      border: 1px solid rgba(from var(--color-light) r g b / 0.1);
+      border-radius: 0.75rem;
+
+      &:hover {
+        transform: translateY(-4px);
+        background: rgba(from var(--color-light) r g b / 0.1);
+        border-color: rgba(from var(--color-light) r g b / 0.2);
+      }
+
+      padding: 2rlh 2rlh;
+      @container (width < 15rlh) {
+        padding: 1rlh 1rlh;
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 2rlh;
+      }
+
+      p {
+        max-width: 30em;
+        margin-inline: auto;
+        font-size: 1rem;
+        line-height: 1.5rlh;
+        opacity: 0.9;
+        flex-grow: 1;
+      }
+
+      .button {
+        align-self: center;
+        &:hover {
+          background: color-mix(in srgb, var(--color-primary) 80%, white 20%);
+          transform: translateY(-1px);
+        }
+        margin-block-start: auto;
+      }
+    }
+  </style>
+</Layout>

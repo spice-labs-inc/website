@@ -1,0 +1,53 @@
+---
+import Layout from "@/layouts/Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<Layout {frontmatter}>
+  <section id="page">
+    <div class="bg-diamonds"></div>
+    <article>
+      <h1>{frontmatter.title}</h1>
+      <slot />
+    </article>
+  </section>
+
+  <style>
+    #page {
+      background-color: var(--color-black);
+      color: var(--color-light);
+      container-type: inline-size;
+    }
+    article {
+      background-color: var(--color-light);
+      color: var(--color-black);
+      border-radius: 5px;
+      min-height: 40vw;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding: 2rlh 4rlh;
+
+      @container (width < 58rlh) {
+        padding: 1rlh 2rlh;
+
+        h1 {
+          font-size: 2em;
+          line-height: 2rlh;
+        }
+        h2 {
+          font-size: 1.5rem;
+          line-height: 1.5rlh;
+        }
+      }
+
+      h2,
+      h3 {
+        margin-block-start: 2rlh;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</Layout>

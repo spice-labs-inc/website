@@ -1,0 +1,58 @@
+---
+const { id } = Astro.props;
+---
+
+<div class="card-flow-wrap">
+  <div class="card-flow" id={id}>
+    <div class="card-flow-inner">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-flow-wrap {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .card-flow {
+    --overdraw: calc(min(var(--page-max), 100vw) / 2 - 50cqi);
+    margin-block: auto;
+    width: calc(100cqi + var(--overdraw) * 2);
+  }
+  .card-flow-inner {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-block: auto;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--overdraw);
+    overscroll-behavior-x: none;
+    padding-inline: var(--overdraw);
+    scrollbar-width: thin;
+    scrollbar-color: #8883 transparent;
+    width: min(var(--page-max), 100vw);
+    max-width: fit-content;
+    box-sizing: border-box;
+
+    .card {
+      @layer defaults {
+        min-width: 14rlh;
+      }
+      scroll-snap-align: start;
+    }
+  }
+  .card-flow-inner::-webkit-scrollbar {
+    height: 6px;
+  }
+  .card-flow-inner::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .card-flow-inner::-webkit-scrollbar-thumb {
+    background: #8883;
+    border-radius: 3px;
+  }
+</style>

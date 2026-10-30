@@ -1,0 +1,19 @@
+{
+  "hero_title": "Welcome to Spice Labs!",
+  "cta": {
+    "label": "Get Started",
+    "url": "/get-started"
+  },
+  "footer_text": "© 2025 Spice Labs. All rights reserved.",
+  "careers_cta": {
+    "label": "See Open Positions",
+    "url": "https://www.linkedin.com/company/spice-labs-inc/jobs/"
+  },
+  "site_description": "Spice Labs Topographer acts as a Cryptographic System of Record, providing provable, on-demand maps. This replaces guesswork with hard data: enabling precise project scoping, data-driven project management, and faster, more accurate Post Quantum Cryptography (PQC)/CBOM inventories.",
+  "site_url": "https://www.spicelabs.io",
+  "site_domain": "spicelabs.io",
+  "contact_us_cta": {
+    "url": "mailto:sales@spicelabs.io",
+    "label": "Email sales@spicelabs.io"
+  }
+}

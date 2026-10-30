@@ -1,0 +1,113 @@
+---
+import ContactHeader from "../content/ContactHeader.mdx";
+import ContactText from "../content/ContactText.mdx";
+import ContactPublicSector from "../content/ContactPublicSector.mdx";
+---
+
+<section id="contact">
+  <div class="inner contact-inner">
+    <div class="intro">
+      <ContactHeader />
+    </div>
+
+    <div id="form-container">
+      <ContactText />
+
+      <div class="public-sector">
+        <ContactPublicSector />
+      </div>
+
+      <p class="email">
+        Email <a href="mailto:sales@spicelabs.io">sales@spicelabs.io</a> to arrange a PQC assessment of
+        your software. For help with Spice Labs software you already use, email
+        <a href="mailto:support@spicelabs.io">support@spicelabs.io</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #contact {
+    position: relative;
+    color: var(--color-dark);
+    background: var(--color-light);
+    overflow: hidden;
+    padding: 3rlh 3rlh;
+  }
+
+  #contact::before {
+    content: "";
+    position: absolute;
+    left: -20%;
+    bottom: -90%;
+    width: 65rem;
+    height: 41rem;
+    transform: rotate(14deg);
+    flex-shrink: 0;
+    border-radius: 65rem;
+    background: var(--color-primary);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  #form-container {
+    .email {
+      margin-block: 2rlh;
+    }
+
+    .public-sector {
+      margin-block-start: 1rlh;
+      padding: 0.75rlh 1rlh;
+      border-left: 3px solid var(--color-secondary);
+      background: rgb(from var(--color-secondary) r g b / 0.06);
+      p {
+        font-size: 1rem;
+        line-height: 1.5rlh;
+        margin: 0;
+      }
+      a {
+        color: var(--color-secondary);
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 2rlh;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 2rlh;
+    }
+  }
+
+  .contact-inner {
+    .intro {
+      container-type: inline-size;
+
+      h2 {
+        letter-spacing: -0.06em;
+        font-size: 3rem;
+        line-height: 3rlh;
+        font-weight: 400;
+        margin-block: 0 1rlh;
+        transform: translateY(var(--shift));
+
+        @container (width < 26rlh) {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+</style>

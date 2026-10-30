@@ -1,0 +1,95 @@
+---
+import Logo from "@/assets/logo.svg";
+import site from "@/content/site.json";
+const showCta = Astro.url.pathname !== "/get-started/";
+const showHome = Astro.url.pathname !== "/";
+---
+
+<header id="header">
+  <div class="inner">
+    <div id="logo">
+      <a href="/">
+        <h1>
+          <Logo />
+        </h1>
+      </a>
+    </div>
+    <div class="toolbar">
+      {showHome && (
+        <a class="button login" href="/">
+          Home
+        </a>
+      )}
+      <a class="button login" href="/pricing">
+        Pricing
+      </a>
+      {showCta && (
+        <a class="button" href={site.cta.url}>
+          {site.cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</header>
+
+<style>
+  #header {
+    color: var(--color-light);
+    background-color: var(--color-black);
+    container-type: inline-size;
+
+    svg {
+      shape-rendering: geometricPrecision;
+    }
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rlh;
+    min-height: var(--header-height);
+    padding: 0 1rlh;
+
+    @container (width < 32rlh) {
+      flex-direction: column;
+    }
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .button.login {
+    background: transparent;
+    color: var(--color-light);
+  }
+
+  #logo {
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+  }
+
+  @media (max-width: 768px) {
+    #header {
+      position: static;
+
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px;
+      gap: 12px;
+    }
+    #logo {
+      padding-right: 0;
+    }
+  }
+</style>

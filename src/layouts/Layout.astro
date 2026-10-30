@@ -1,0 +1,65 @@
+---
+import "@/app.css";
+import { GoogleAnalytics } from "astro-google-analytics";
+import TopBanner from "@/components/TopBanner.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import site from "@/content/site.json";
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{frontmatter?.title ? `${frontmatter.title} - Spice Labs` : "Spice Labs"}</title>
+    <meta name="description" content={site.site_description} />
+    <meta property="og:url" content={site.site_url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Spice Labs" />
+    <meta property="og:description" content={site.site_description} />
+    <meta property="og:image" content={site.site_url + "/images/preview.png"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content={site.site_domain} />
+    <meta property="twitter:url" content={site.site_url} />
+    <meta name="twitter:title" content="Spice Labs" />
+    <meta name="twitter:description" content={site.site_description} />
+    <meta name="twitter:image" content={site.site_url + "/images/preview.png"} />
+
+    <GoogleAnalytics id="G-EGCLTR184N" />
+  </head>
+  <body>
+    <div id="container">
+      <TopBanner />
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  :root {
+    background-color: var(--color-black);
+    --content-max: 1440px;
+    --page-max: 1600px;
+  }
+  #container {
+    min-width: 320px;
+    min-height: 100vh;
+  }
+  main {
+    background: var(--color-light);
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    #spacer {
+      height: 0;
+    }
+  }
+</style>

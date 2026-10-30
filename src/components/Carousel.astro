@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import arrow from "@/assets/arrow.svg";
+const { id } = Astro.props;
+---
+
+<div class="carousel" data-id={id}>
+  <div class="controls">
+    <button class="arrow" data-dir="left" aria-label="Scroll left">
+      <Image class="arrow-left" src={arrow} alt="Scroll left" width="48" height="48" />
+    </button>
+    <button class="arrow" data-dir="right" aria-label="Scroll right">
+      <Image class="arrow-right" src={arrow} alt="Scroll right" width="48" height="48" />
+    </button>
+  </div>
+
+  <div class="row" id={id}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .arrow {
+    background: none;
+    color: inherit;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+  .arrow[disabled] {
+    opacity: 0.3;
+  }
+  .arrow-left {
+    rotate: 180deg;
+  }
+
+  .row {
+    display: flex;
+    gap: 1.15rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding-bottom: 0.25rem;
+    scroll-snap-type: x proximity;
+  }
+  .row::-webkit-scrollbar {
+    height: 6px;
+  }
+  .row::-webkit-scrollbar-thumb {
+    background: #8883;
+    border-radius: 3px;
+  }
+
+  .card {
+    flex: 0 0 180px;
+    aspect-ratio: 5/8;
+    height: 300px;
+    border-radius: 3px;
+    overflow: hidden;
+    line-height: 0.8;
+    background: #0b0b0f;
+    scroll-snap-stop: always;
+  }
+  .card h3 {
+    font-size: 0.8rem;
+    margin: 0.25rem 0 0;
+  }
+  .card p {
+    font-size: 0.6rem;
+    opacity: 0.85;
+  }
+  .card > div {
+    padding: 0.35rem 0.25rem 0.5rem;
+  }
+  .card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  function initCarousel(root: HTMLElement) {
+    const row = root.querySelector(".row") as HTMLDivElement;
+    const left = root.querySelector('.arrow[data-dir="left"]') as HTMLButtonElement;
+    const right = root.querySelector('.arrow[data-dir="right"]') as HTMLButtonElement;
+
+    if (!row || !left || !right) return;
+
+    function updateArrows() {
+      const maxScroll = row.scrollWidth - row.clientWidth;
+      if (maxScroll <= 0) {
+        left.disabled = true;
+        right.disabled = true;
+        return;
+      }
+      left.disabled = row.scrollLeft <= 0;
+      right.disabled = row.scrollLeft >= maxScroll - 1;
+    }
+
+    function scrollByCards(dir: "right" | "left") {
+      const firstCard = row.querySelector(".card");
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 200;
+      const delta = Math.max(cardWidth * 3, row.clientWidth * 0.8);
+      row.scrollBy({ left: dir === "right" ? delta : -delta, behavior: "smooth" });
+      setTimeout(updateArrows, 400);
+    }
+
+    root.addEventListener("update-arrows", updateArrows);
+
+    left.addEventListener("click", () => scrollByCards("left"));
+    right.addEventListener("click", () => scrollByCards("right"));
+    row.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows);
+    updateArrows();
+  }
+
+  document.querySelectorAll(".carousel").forEach((el) => initCarousel(el as HTMLElement));
+</script>

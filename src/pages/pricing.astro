@@ -1,0 +1,180 @@
+---
+import Page from "@/layouts/Page.astro";
+import pricing from "@/content/pricing.json";
+
+const frontmatter = { title: "Pricing" };
+const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const effective = new Date(pricing.effective_date + "T00:00:00").toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
+
+// Group rows by product family, preserving the order they appear in pricing.json.
+const families: { name: string; items: typeof pricing.items }[] = [];
+for (const item of pricing.items) {
+  let f = families.find((x) => x.name === item.family);
+  if (!f) {
+    f = { name: item.family, items: [] };
+    families.push(f);
+  }
+  f.items.push(item);
+}
+// Optional columns from the Carahsoft workbook. Flip to true/false to show or hide them.
+const showCloud = false; // column F: NASPO Cloud Type
+const showItes = false; // columns G/H: Army ITES catalog name and license type
+const showOrigin = false; // column O: Country of origin
+const blurbFor = (name: string) => pricing.families.find((f) => f.name === name)?.blurb;
+// Glue the last two words of a unit with a non-breaking space so a wrapped unit never ends
+// in a single orphaned word ("...1,000 applications" stays together; so does "per year").
+const noRunt = (text: string) => text.replace(/ (\S+)$/, "\u00A0$1");
+---
+
+<Page {frontmatter}>
+  <p class="intro">{pricing.intro} <a href="/public-sector">Learn about buying through Carahsoft.</a></p>
+  <p class="effective">Price list effective {effective}.</p>
+
+  {
+    families.map((f) => (
+      <section class="family">
+        <h2>{f.name}</h2>
+        {blurbFor(f.name) && <p class="blurb">{blurbFor(f.name)}</p>}
+        <div class="table-wrap">
+          <table>
+            <colgroup>
+              <col class="c-part" />
+              <col class="c-desc" />
+              {showCloud && <col class="c-cloud" />}
+              {showItes && <col class="c-ites" />}
+              {showItes && <col class="c-ites" />}
+              <col class="c-price" />
+              {showOrigin && <col class="c-origin" />}
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Part number</th>
+                <th scope="col">Description</th>
+                {showCloud && <th scope="col">Cloud type</th>}
+                {showItes && <th scope="col">Army ITES catalog</th>}
+                {showItes && <th scope="col">Army ITES license type</th>}
+                <th scope="col" class="num">List price (USD)</th>
+                {showOrigin && <th scope="col">Country of origin</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {f.items.map((i) => (
+                <tr>
+                  <td class="part">
+                    <code>{i.part_number}</code>
+                  </td>
+                  <td class="desc">{i.description}</td>
+                  {showCloud && <td>{i.cloud_type || "—"}</td>}
+                  {showItes && <td>{i.ites_catalog || "—"}</td>}
+                  {showItes && <td>{i.ites_license || "—"}</td>}
+                  <td class="num">
+                    <strong>{money.format(i.price)}</strong>
+                    <span class="unit">{noRunt(i.unit)}</span>
+                  </td>
+                  {showOrigin && <td>{i.origin}</td>}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))
+  }
+
+  <p class="fine">
+    Prices are commercial list prices and may be updated without notice; the version published on this page governs.
+    Volume tiers are incremental: each band applies to the applications within that range. For quotes, contract vehicle
+    pricing, or questions, <a href="/#contact">contact us</a>.
+  </p>
+</Page>
+
+<style>
+  .intro {
+    max-width: 50em;
+  }
+  .effective {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-block-start: 0;
+  }
+  .family h2 {
+    margin-block-start: 2.25rlh;
+    margin-block-end: 0.25rlh;
+  }
+  .family .blurb {
+    margin-block: 0 0.75rlh;
+    max-width: 50em;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-inline: -2rlh;
+    padding-inline: 2rlh;
+  }
+  table {
+    width: 100%;
+    min-width: 52rem;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    line-height: 1.25rlh;
+  }
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rlh 0.75rem;
+    border-bottom: 1px solid #cfd3da;
+  }
+  th {
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-dark);
+    border-bottom: 2px solid var(--color-dark);
+  }
+  td.part code {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .c-part { width: 10rem; }
+  .c-cloud { width: 6.5rem; }
+  .c-ites { width: 7.5rem; }
+  .c-price { width: 9.5rem; }
+  .c-origin { width: 6.5rem; }
+  td.part code {
+    overflow-wrap: anywhere;
+  }
+  .num {
+    text-align: right;
+  }
+  td.num strong {
+    white-space: nowrap;
+  }
+  td.num strong {
+    display: block;
+    font-size: 1.05rem;
+  }
+  td.num .unit {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    opacity: 0.7;
+    margin-block-start: 0.15em;
+  }
+  td.num .unit {
+    /* Even out the wrap across lines where the browser supports it (Chrome, Safari 17.5+). */
+    text-wrap: balance;
+  }
+  .fine {
+    margin-block-start: 2rlh;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    max-width: 50em;
+  }
+</style>

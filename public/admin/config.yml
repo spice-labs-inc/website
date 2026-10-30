@@ -1,0 +1,152 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+logo:
+  src: /logomark.svg
+
+backend:
+  name: "github"
+  repo: spice-labs-inc/website
+  branch: main
+  base_url: https://sveltia-cms-auth.spice-labs-inc.workers.dev
+
+media_folder: "public/images"
+public_folder: "/images"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
+
+singletons:
+  - name: "fields"
+    label: "Fields"
+    file: "src/content/site.json"
+    fields:
+      - name: "hero_title"
+        widget: "string"
+        label: "Hero Title"
+      - name: "cta"
+        label: "CTA"
+        widget: "object"
+        fields:
+          - { name: "label", widget: "string", label: "CTA Label" }
+          - { name: "url", widget: "string", label: "CTA URL" }
+      - name: "footer_text"
+        widget: "string"
+        label: "Footer Text"
+      - name: "careers_cta"
+        label: "Careers CTA"
+        widget: "object"
+        fields:
+          - { name: "label", widget: "string", label: "Careers CTA Label" }
+          - { name: "url", widget: "string", label: "Careers CTA URL" }
+
+      - name: "site_description"
+        widget: "text"
+        label: "Site Description"
+      - name: "site_url"
+        widget: "string"
+        label: "Site URL"
+      - name: "site_domain"
+        widget: "string"
+        label: "Site Domain"
+  - name: "banner"
+    label: "Top Banner"
+    file: "src/content/banner.mdx"
+    format: "frontmatter"
+    fields:
+      - { name: "enabled", label: "Enabled", widget: "boolean", hint: "Turn on to show the banner above the header." }
+      - { name: "body", label: "Body", widget: "markdown", required: false, hint: "Markdown supported, e.g. **bold** or [link text](url). The banner only shows when this is non-empty." }
+
+collections:
+  - name: "content"
+    label: "Content"
+    folder: "src/content"
+    create: true
+    delete: false
+    extension: "mdx"
+    identifier_field: "name"
+    fields:
+      - name: "name"
+        label: "Name"
+        widget: "string"
+        readonly: true
+      - name: "body"
+        label: "Body"
+        widget: "markdown"
+
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    delete: true
+    format: "json"
+    extension: "json"
+    identifier_field: "name"
+    slug: "{{name | slugify}}"
+    media_folder: "/public/images/team"
+    public_folder: "/images/team"
+    fields:
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "image", label: "Photo", widget: "image" }
+      - { name: "bio", label: "Bio", widget: "text", required: false }
+      - { name: "link", label: "Link URL", widget: "string", required: false }
+
+  - name: "advisors"
+    label: "Advisors"
+    folder: "src/content/advisors"
+    create: true
+    delete: true
+    format: "json"
+    extension: "json"
+    identifier_field: "name"
+    slug: "{{name | slugify}}"
+    media_folder: "/public/images/advisors"
+    public_folder: "/images/advisors"
+    fields:
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "title", label: "Title", widget: "string", required: false }
+      - { name: "image", label: "Photo", widget: "image" }
+      - { name: "bio", label: "Bio", widget: "text", required: false }
+      - { name: "link", label: "Link URL", widget: "string", required: false }
+
+  - name: "resources"
+    label: "Resources"
+    folder: "src/content/resources"
+    create: true
+    delete: true
+    format: "json"
+    extension: "json"
+    identifier_field: "name"
+    slug: "{{name | slugify}}"
+    media_folder: "/public/images/resources"
+    public_folder: "/images/resources"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - {
+          name: "type",
+          label: "Type",
+          widget: "select",
+          options:
+            ["Blog Post", "Press Release", "Case Study", "Ebook", "Guide", "Video", "Webinar"]
+        }
+      - { name: "url", label: "URL", widget: "string", type: "url" }
+      - { name: "date", label: "Date", widget: "datetime", type: "date" }
+      - { name: "image", label: "Photo", widget: "image", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "src/pages"
+    create: true
+    delete: true
+    format: "frontmatter"
+    extension: "md"
+    identifier_field: "name"
+    slug: "{{title | slugify}}"
+    media_folder: "/public/images/resources"
+    public_folder: "/images/resources"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "../layouts/Page.astro" }
+      - { name: "body", label: "Body", widget: "markdown" }

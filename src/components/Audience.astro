@@ -1,0 +1,132 @@
+---
+import * as AudienceHeader from "../content/AudienceHeader.md";
+import * as Audience01Header from "../content/Audience01Header.md";
+import Audience01Text from "../content/Audience01Text.mdx";
+import * as Audience02Header from "../content/Audience02Header.md";
+import Audience02Text from "../content/Audience02Text.mdx";
+import * as Audience03Header from "../content/Audience03Header.md";
+import Audience03Text from "../content/Audience03Text.mdx";
+import { plainText } from "../lib/plain.ts";
+---
+
+<section id="audience">
+  <div class="inner">
+    <div class="audience-grid">
+      <div class="left">
+        <h2 class="section-title" set:html={await plainText(AudienceHeader)} />
+      </div>
+
+      <div class="right">
+        <details open name="audience" class="item">
+          <summary class="label" set:html={await plainText(Audience01Header)} />
+          <Audience01Text />
+        </details>
+
+        <details name="audience" class="item">
+          <summary class="label" set:html={await plainText(Audience02Header)} />
+          <Audience02Text />
+        </details>
+
+        <details name="audience" class="item">
+          <summary class="label" set:html={await plainText(Audience03Header)} />
+          <Audience03Text />
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #audience {
+      color: var(--color-light);
+      background-color: var(--color-black);
+    }
+    .inner {
+      padding-bottom: 50px;
+      position: relative;
+      container-type: inline-size;
+      padding-inline: 3rlh;
+      @media (width< 800px) {
+        padding-inline: 2rlh;
+      }
+    }
+
+    summary {
+      list-style: none;
+      &::after {
+        font-weight: 700;
+        content: "+";
+        float: right;
+      }
+      [open] > &::after {
+        content: "−";
+      }
+
+      font-size: 1.5rem;
+      line-height: 2rlh;
+      font-weight: 400;
+      margin-block: 0 calc(var(--shift) * -1);
+      padding-block: var(--shift) 0;
+
+      @container (width < 24rlh) {
+        font-size: 1rem;
+        line-height: 1rlh;
+        font-weight: 600;
+      }
+    }
+
+    details {
+      margin-block: 0 2rlh;
+      border-top: 1px dashed var(--color-white-20, rgba(241, 241, 241, 0.2));
+      padding-top: 0.75rlh;
+
+      &[open] {
+        pointer-events: none;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1rlh;
+      }
+    }
+
+    details:first-of-type {
+      border-top: none;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rlh;
+      padding: 2rlh 1rlh;
+      margin: 0 auto;
+      @container (width < 38.5rlh) {
+        grid-template-columns: 1fr;
+        gap: 1.25rlh;
+        padding: 1.5rlh 1rlh;
+      }
+    }
+
+    .right,
+    .left {
+      container-type: inline-size;
+    }
+
+    .left {
+      @container (width < 35rlh) {
+        margin-block-end: 4rlh;
+      }
+    }
+
+    .section-title {
+      margin-block: 0;
+      letter-spacing: -0.02em;
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 3rlh;
+
+      @container (width < 22rlh) {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</section>

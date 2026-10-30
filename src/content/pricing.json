@@ -1,0 +1,119 @@
+{
+  "effective_date": "2026-10-02",
+  "intro": "Published commercial list prices for Spice Labs offerings. All prices are in U.S. dollars, exclusive of applicable taxes, and reflect our standard commercial price list. Government buyers can purchase through Carahsoft; see our Public Sector page for details.",
+  "families": [
+    {
+      "name": "Spice Labs Surveyor IT Pro",
+      "blurb": "Customer-managed, air-gapped tool that scans built artifacts — code, third-party software, and vendor containers — to produce a Cryptography Bill of Materials (CBOM) with cryptographic call sites and libraries rated for post-quantum readiness."
+    },
+    {
+      "name": "Spice Labs Surveyor OT Pro",
+      "blurb": "Customer-managed, air-gapped tool for operational technology teams that points at an artifact repository or local filesystem and builds a CBOM of the cryptographic material found in each artifact."
+    },
+    {
+      "name": "Spice Labs Topographer Enterprise",
+      "blurb": "Cloud-hosted: Surveyor IT uploads what it finds to Topographer, which generates CBOMs, tracks post-quantum readiness across an entire application estate, and backs the onboarding assessment and bring-your-own-keys add-on priced below."
+    }
+  ],
+  "items": [
+    {
+      "part_number": "SL-SIP-SEAT-1YR",
+      "family": "Spice Labs Surveyor IT Pro",
+      "description": "Surveyor IT Pro customer-managed, air-gapped edition, annual subscription per seat. Builds Cryptography Bill of Materials (CBOM) covering cryptographic material, libraries with Post-Quantum Cryptography (PQC) ratings, and call sites. Support included.",
+      "cloud_type": "",
+      "ites_catalog": "IT Utility & Security",
+      "ites_license": "Subscription",
+      "price": 100000,
+      "unit": "per seat, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-SOP-SEAT-1YR",
+      "family": "Spice Labs Surveyor OT Pro",
+      "description": "Surveyor OT Pro customer-managed, air-gapped edition, annual subscription per seat. Scans artifact repositories or local filesystems and builds a Cryptography Bill of Materials (CBOM) for operational technology (OT) systems. Support included.",
+      "cloud_type": "",
+      "ites_catalog": "IT Utility & Security",
+      "ites_license": "Subscription",
+      "price": 9900,
+      "unit": "per seat, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-ASSESS-50",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Pro Cryptographic Estate Baseline and Post-Quantum Cryptography (PQC) Risk Assessment onboarding. Fixed-fee 90-day term: discovery of up to 50 applications, Cryptography Bill of Materials (CBOM), prioritized risks, executive summary.",
+      "cloud_type": "",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 100000,
+      "unit": "fixed fee, 90-day term",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-SAAS-APP-T1",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Software as a Service (SaaS) with Surveyor IT, annual subscription per application, applications 51 to 200. Cryptographic discovery, Cryptography Bill of Materials (CBOM), Post-Quantum Cryptography (PQC) readiness.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "IT Utility & Security",
+      "ites_license": "As-A-Service",
+      "price": 2000,
+      "unit": "per application, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-SAAS-APP-T2",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Software as a Service (SaaS) with Surveyor IT, annual subscription per application, incremental applications 201 to 500. Cryptographic discovery, Cryptography Bill of Materials (CBOM), Post-Quantum Cryptography (PQC) readiness.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 1600,
+      "unit": "per application, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-SAAS-APP-T3",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Software as a Service (SaaS) with Surveyor IT, annual subscription per application, incremental applications 501 to 1,000. Cryptographic discovery, Cryptography Bill of Materials (CBOM), Post-Quantum Cryptography (PQC) readiness.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 1300,
+      "unit": "per application, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-SAAS-APP-T4",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Software as a Service (SaaS) with Surveyor IT, annual subscription per application, incremental applications 1,001 to 2,000. Cryptographic discovery, Cryptography Bill of Materials (CBOM), Post-Quantum Cryptography (PQC) readiness.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 1000,
+      "unit": "per application, per year",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-EKM-T1",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Bring Your Own Keys (BYOK) service add-on, annual subscription up to 1000 applications. Secure connection to the customer secrets management service so the customer manages its own keys.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 200000,
+      "unit": "per year, up to 1,000 applications",
+      "origin": "United States"
+    },
+    {
+      "part_number": "SL-TOP-EKM-T2",
+      "family": "Spice Labs Topographer Enterprise",
+      "description": "Topographer Enterprise Bring Your Own Keys (BYOK) service add-on, annual subscription per application, incremental applications 1,001 to 2,000. Secure connection to the customer secrets management service so the customer manages its own keys.",
+      "cloud_type": "Software as a Service",
+      "ites_catalog": "",
+      "ites_license": "",
+      "price": 400,
+      "unit": "per application, per year",
+      "origin": "United States"
+    }
+  ]
+}

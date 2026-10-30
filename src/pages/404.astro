@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout frontmatter={{ title: "Page not found" }}>
+  <section class="not-found">
+    <h1>Page not found</h1>
+    <p>
+      That page does not exist. <a href="/">Go to the home page</a>.
+    </p>
+  </section>
+  <script is:inline>
+    // Video short links (spicelabs.io/v/<video>) are redirected by Cloudflare; www is not
+    // behind Cloudflare, so its /v/ links land here and are sent on to the docs video page.
+    (function () {
+      /** @type {RegExpMatchArray | null} */
+      var match = location.pathname.match(/^\/v\/([a-z0-9-]+)\/?$/);
+      if (match) {
+        location.replace(
+          "https://docs.spicelabs.io/docs/videos/" + match[1] + "/" + location.search
+        );
+      }
+    })();
+  </script>
+</Layout>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 6rem;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+</style>

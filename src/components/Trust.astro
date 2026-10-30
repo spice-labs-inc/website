@@ -1,0 +1,148 @@
+---
+import CardFlow from "./CardFlow.astro";
+import TrustHeader from "../content/TrustHeader.mdx";
+import Trust01Header from "../content/Trust01Header.mdx";
+import Trust01Text from "../content/Trust01Text.mdx";
+import Trust02Header from "../content/Trust02Header.mdx";
+import Trust02Text from "../content/Trust02Text.mdx";
+import Trust03Header from "../content/Trust03Header.mdx";
+import Trust03Text from "../content/Trust03Text.mdx";
+---
+
+<section id="trust">
+  <div class="inner">
+    <TrustHeader />
+
+    <CardFlow>
+      <div class="card">
+        <span class="num">01</span>
+        <Trust01Header />
+        <div class="card-bottom">
+          <Trust01Text />
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">02</span>
+        <Trust02Header />
+        <div class="card-bottom">
+          <Trust02Text />
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="num">03</span>
+        <Trust03Header />
+        <div class="card-bottom">
+          <Trust03Text />
+        </div>
+      </div>
+    </CardFlow>
+  </div>
+
+  <style>
+    #trust {
+      color: var(--color-light);
+      background: radial-gradient(ellipse at center, #000015 0%, #001677 80%, #001677 100%);
+      container-type: inline-size;
+      overflow: hidden;
+
+      h2 {
+        font-size: 2.75rem;
+        line-height: 3rlh;
+        font-weight: 400;
+        text-align: center;
+        margin: 0 0 1rlh 0;
+
+        @container (width < 800px) {
+          font-size: 2rem;
+          line-height: 2rlh;
+        }
+      }
+    }
+
+    .inner {
+      padding: 2rlh 3rlh;
+      container-type: inline-size;
+      font-size: 1.5rem;
+      line-height: 1.4rlh;
+
+      @container (width < 800px) {
+        padding-inline: 2rlh;
+      }
+
+      h3 {
+        font-size: 3rem;
+        line-height: 3rlh;
+        text-align: right;
+        margin-block: 4rlh 3rlh;
+        margin-inline: 1rlh;
+        font-weight: 400;
+
+        @container (width < 24rlh) {
+          font-size: 2rem;
+          line-height: 2rlh;
+        }
+      }
+
+      container-type: inline-size;
+
+      .card {
+        width: 18rlh;
+      }
+    }
+
+    .card {
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--color-white-20);
+      padding: 1rlh;
+      display: grid;
+      gap: 1rlh;
+      grid-template: "num heading" min-content "body body" auto / min-content auto;
+      h3 {
+        margin: 0;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 1.4rlh;
+      }
+      p:last-child {
+        margin-block-end: 0;
+      }
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .num {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .card-title {
+      margin: 0;
+      text-align: right;
+    }
+
+    .card-bottom {
+      font-size: 1.25rem;
+      line-height: 1.2rlh;
+      grid-area: body;
+      align-self: end;
+    }
+
+    .card-bottom p {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .card-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</section>
